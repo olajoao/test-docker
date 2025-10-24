@@ -1,5 +1,4 @@
-"use client"
-import { BookOpen, Bot, Command, LifeBuoy, PieChart, Send, Settings2, SquareTerminal, ChevronRight } from "lucide-react"
+import { Command, LifeBuoy, PieChart, Settings2, ChevronRight, SquareAsterisk, Phone, Headset, ChartSpline, PhoneOutgoing } from "lucide-react"
 
 import {
   Sidebar,
@@ -13,10 +12,9 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
   SidebarGroup,
-  SidebarGroupLabel,
   SidebarGroupContent,
   SidebarRail,
-} from "@/components/ui/sidebar-test"
+} from "@/components/ui/sidebar"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import {
   DropdownMenu,
@@ -27,6 +25,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Link, useMatchRoute } from "@tanstack/react-router"
+import { cn } from "@/lib/utils"
 
 const data = {
   user: {
@@ -36,34 +36,44 @@ const data = {
   },
   navMain: [
     {
-      title: "Dashboard",
-      url: "#",
-      icon: SquareTerminal,
-      isActive: true,
+      title: "SIP",
+      url: "/sip/ramais-sip",
+      icon: SquareAsterisk,
+      items: [
+        {
+          title: 'Ramais SIP',
+          url: '/sip/ramais-sip',
+          isActive: true
+        },
+        {
+          title: 'SIP Trunks',
+          url: '/sip/sip-trunks'
+        }
+      ]
     },
     {
-      title: "Analytics",
+      title: "Dialplan",
       url: "#",
       icon: PieChart,
       items: [
         {
-          title: "Overview",
-          url: "#",
+          title: "Números de entrada",
+          url: "/numeros-de-entrada",
         },
         {
-          title: "Reports",
-          url: "#",
+          title: "Regras de entrada",
+          url: "/regras-de-entrada",
         },
         {
-          title: "Insights",
-          url: "#",
+          title: "Regras de saída",
+          url: "/regras-de-saida",
         },
       ],
     },
     {
-      title: "Projects",
+      title: "PABX",
       url: "#",
-      icon: Bot,
+      icon: Phone,
       items: [
         {
           title: "All Projects",
@@ -80,9 +90,28 @@ const data = {
       ],
     },
     {
-      title: "Documentation",
+      title: "Gerenciamento",
       url: "#",
-      icon: BookOpen,
+      icon: Settings2,
+      items: [
+        {
+          title: "All Projects",
+          url: "#",
+        },
+        {
+          title: "Active",
+          url: "#",
+        },
+        {
+          title: "Archived",
+          url: "#",
+        },
+      ],
+    },
+    {
+      title: "Relatórios",
+      url: "#",
+      icon: ChartSpline,
       items: [
         {
           title: "Getting Started",
@@ -98,41 +127,23 @@ const data = {
         },
       ],
     },
-    {
-      title: "Settings",
-      url: "#",
-      icon: Settings2,
-      items: [
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-      ],
-    },
   ],
   navSecondary: [
     {
-      title: "Support",
+      title: "Callcenter",
       url: "#",
-      icon: LifeBuoy,
+      icon: Headset,
     },
     {
-      title: "Feedback",
+      title: "Discador",
       url: "#",
-      icon: Send,
+      icon: PhoneOutgoing,
     },
   ],
 }
 
 export function AppSidebar() {
+  const matchRoute = useMatchRoute()
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader>
@@ -154,41 +165,56 @@ export function AppSidebar() {
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Platform</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {data.navMain.map((item) => {
+                const isGroupActive =
+                  !!matchRoute({ to: item.url, fuzzy: true }) ||
+                  !!item.items?.some((sub) => matchRoute({ to: sub.url, fuzzy: true }))
+
                 if (!item.items) {
                   return (
                     <SidebarMenuItem key={item.title}>
-                      <SidebarMenuButton asChild isActive={item.isActive} tooltip={item.title}>
-                        <a href={item.url}>
-                          <item.icon />
-                          <span>{item.title}</span>
-                        </a>
+                      <SidebarMenuButton asChild isActive={!!matchRoute({ to: item.url })} tooltip={item.title}>
+                        <Link to={item.url}>
+                          {({ isActive }) => {
+                            return (
+                              <div className={isActive ? 'text-purple-600' : ''}>
+                                <item.icon />
+                                <span>{item.title}</span>
+                              </div>
+                            )
+                          }}
+                        </Link>
                       </SidebarMenuButton>
                     </SidebarMenuItem>
                   )
                 }
 
                 return (
-                  <Collapsible key={item.title} asChild defaultOpen={item.isActive}>
+                  <Collapsible key={item.title} asChild defaultOpen={isGroupActive}>
                     <SidebarMenuItem>
-                      <CollapsibleTrigger asChild>
-                        <SidebarMenuButton tooltip={item.title}>
+                      <CollapsibleTrigger asChild className="group">
+                        <SidebarMenuButton tooltip={item.title} isActive={isGroupActive}>
                           <item.icon />
                           <span>{item.title}</span>
-                          <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                          <ChevronRight className={cn("ml-auto transition-transform duration-200 group-collapsible:rotate-90", "group-data-[state=open]:rotate-90")} />
                         </SidebarMenuButton>
                       </CollapsibleTrigger>
                       <CollapsibleContent>
                         <SidebarMenuSub>
                           {item.items.map((subItem) => (
                             <SidebarMenuSubItem key={subItem.title}>
-                              <SidebarMenuSubButton asChild>
-                                <a href={subItem.url}>
-                                  <span>{subItem.title}</span>
-                                </a>
+                              <SidebarMenuSubButton asChild className={subItem.isActive ? 'text-purple-600' : ''}>
+                                <Link to={subItem.url}>
+                                  {({ isActive }) => {
+                                    return (
+                                      <div className={isActive ? 'text-purple-600' : 'text-muted-foreground'}>
+                                        <span>{subItem.title}</span>
+                                      </div>
+                                    )
+                                  }}
+                                </Link>
                               </SidebarMenuSubButton>
                             </SidebarMenuSubItem>
                           ))}
