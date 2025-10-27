@@ -1,3 +1,4 @@
+import RamaisSip from '@/pages/sip/ramais-sip/ramais-sip'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/sip/ramais-sip/')({
@@ -8,5 +9,5 @@ export const Route = createFileRoute('/sip/ramais-sip/')({
 })
 
 function RouteComponent() {
-  return <div className='text-3xl text-sky-500'>Hello "/ramais-sip/"!</div>
+  return <RamaisSip />
 }
