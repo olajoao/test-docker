@@ -8,69 +8,69 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as SipRamaisSipIndexRouteImport } from './routes/sip/ramais-sip/index'
+import { Route as rootRouteImport } from './pages/__root'
+import { Route as AppSipTrunksRouteImport } from './pages/_app/sip.trunks'
+import { Route as AppSipBranchsRouteImport } from './pages/_app/sip.branchs'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const AppSipTrunksRoute = AppSipTrunksRouteImport.update({
+  id: '/_app/sip/trunks',
+  path: '/sip/trunks',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SipRamaisSipIndexRoute = SipRamaisSipIndexRouteImport.update({
-  id: '/sip/ramais-sip/',
-  path: '/sip/ramais-sip/',
+const AppSipBranchsRoute = AppSipBranchsRouteImport.update({
+  id: '/_app/sip/branchs',
+  path: '/sip/branchs',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/sip/ramais-sip': typeof SipRamaisSipIndexRoute
+  '/sip/branchs': typeof AppSipBranchsRoute
+  '/sip/trunks': typeof AppSipTrunksRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/sip/ramais-sip': typeof SipRamaisSipIndexRoute
+  '/sip/branchs': typeof AppSipBranchsRoute
+  '/sip/trunks': typeof AppSipTrunksRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/sip/ramais-sip/': typeof SipRamaisSipIndexRoute
+  '/_app/sip/branchs': typeof AppSipBranchsRoute
+  '/_app/sip/trunks': typeof AppSipTrunksRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/sip/ramais-sip'
+  fullPaths: '/sip/branchs' | '/sip/trunks'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/sip/ramais-sip'
-  id: '__root__' | '/' | '/sip/ramais-sip/'
+  to: '/sip/branchs' | '/sip/trunks'
+  id: '__root__' | '/_app/sip/branchs' | '/_app/sip/trunks'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  SipRamaisSipIndexRoute: typeof SipRamaisSipIndexRoute
+  AppSipBranchsRoute: typeof AppSipBranchsRoute
+  AppSipTrunksRoute: typeof AppSipTrunksRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/_app/sip/trunks': {
+      id: '/_app/sip/trunks'
+      path: '/sip/trunks'
+      fullPath: '/sip/trunks'
+      preLoaderRoute: typeof AppSipTrunksRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/sip/ramais-sip/': {
-      id: '/sip/ramais-sip/'
-      path: '/sip/ramais-sip'
-      fullPath: '/sip/ramais-sip'
-      preLoaderRoute: typeof SipRamaisSipIndexRouteImport
+    '/_app/sip/branchs': {
+      id: '/_app/sip/branchs'
+      path: '/sip/branchs'
+      fullPath: '/sip/branchs'
+      preLoaderRoute: typeof AppSipBranchsRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  SipRamaisSipIndexRoute: SipRamaisSipIndexRoute,
+  AppSipBranchsRoute: AppSipBranchsRoute,
+  AppSipTrunksRoute: AppSipTrunksRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -37,17 +37,17 @@ const data = {
   navMain: [
     {
       title: "SIP",
-      url: "/sip/ramais-sip",
+      url: "#",
       icon: SquareAsterisk,
       items: [
         {
           title: 'Ramais SIP',
-          url: '/sip/ramais-sip',
+          url: '/sip/branchs',
           isActive: true
         },
         {
           title: 'SIP Trunks',
-          url: '/sip/sip-trunks'
+          url: '/sip/trunks',
         }
       ]
     },

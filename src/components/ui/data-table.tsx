@@ -30,14 +30,14 @@ export function DataTable<TData, TValue>({
   })
 
   return (
-    <div className="overflow-hidden rounded-md border">
-      <Table>
+    <div className="relative rounded-md border min-w-0 h-[calc(100dvh-242px)] overflow-y-auto">
+      <Table className="relative">
         <TableHeader>
-          {table.getHeaderGroups().map((headerGroup) => (
+          {table.getHeaderGroups()?.map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 return (
-                  <TableHead key={header.id}>
+                  <TableHead key={header.id} className="text-muted-foreground font-normal">
                     {header.isPlaceholder
                       ? null
                       : flexRender(
@@ -66,8 +66,8 @@ export function DataTable<TData, TValue>({
             ))
           ) : (
             <TableRow>
-              <TableCell colSpan={columns.length} className="h-24 text-center">
-                No results.
+              <TableCell colSpan={columns?.length} className="h-24 text-center">
+                Nenhum resultado encontrado
               </TableCell>
             </TableRow>
           )}
