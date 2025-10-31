@@ -13,8 +13,8 @@ export default defineConfig({
       generatedRouteTree: './src/routeTree.gen.ts',
       routesDirectory: './src/pages/'
     }),
+    tailwindcss(),
     react(),
-    tailwindcss()
   ],
   resolve: {
     alias: {

@@ -9,68 +9,97 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './pages/__root'
-import { Route as AppSipTrunksRouteImport } from './pages/_app/sip.trunks'
-import { Route as AppSipBranchsRouteImport } from './pages/_app/sip.branchs'
+import { Route as AppLayoutRouteImport } from './pages/_app/_layout'
+import { Route as AppLayoutSipTrunksRouteImport } from './pages/_app/_layout.sip.trunks'
+import { Route as AppLayoutSipBranchsRouteImport } from './pages/_app/_layout.sip.branchs'
 
-const AppSipTrunksRoute = AppSipTrunksRouteImport.update({
-  id: '/_app/sip/trunks',
-  path: '/sip/trunks',
+const AppLayoutRoute = AppLayoutRouteImport.update({
+  id: '/_app/_layout',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AppSipBranchsRoute = AppSipBranchsRouteImport.update({
-  id: '/_app/sip/branchs',
+const AppLayoutSipTrunksRoute = AppLayoutSipTrunksRouteImport.update({
+  id: '/sip/trunks',
+  path: '/sip/trunks',
+  getParentRoute: () => AppLayoutRoute,
+} as any)
+const AppLayoutSipBranchsRoute = AppLayoutSipBranchsRouteImport.update({
+  id: '/sip/branchs',
   path: '/sip/branchs',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AppLayoutRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/sip/branchs': typeof AppSipBranchsRoute
-  '/sip/trunks': typeof AppSipTrunksRoute
+  '/sip/branchs': typeof AppLayoutSipBranchsRoute
+  '/sip/trunks': typeof AppLayoutSipTrunksRoute
 }
 export interface FileRoutesByTo {
-  '/sip/branchs': typeof AppSipBranchsRoute
-  '/sip/trunks': typeof AppSipTrunksRoute
+  '/sip/branchs': typeof AppLayoutSipBranchsRoute
+  '/sip/trunks': typeof AppLayoutSipTrunksRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/_app/sip/branchs': typeof AppSipBranchsRoute
-  '/_app/sip/trunks': typeof AppSipTrunksRoute
+  '/_app/_layout': typeof AppLayoutRouteWithChildren
+  '/_app/_layout/sip/branchs': typeof AppLayoutSipBranchsRoute
+  '/_app/_layout/sip/trunks': typeof AppLayoutSipTrunksRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths: '/sip/branchs' | '/sip/trunks'
   fileRoutesByTo: FileRoutesByTo
   to: '/sip/branchs' | '/sip/trunks'
-  id: '__root__' | '/_app/sip/branchs' | '/_app/sip/trunks'
+  id:
+    | '__root__'
+    | '/_app/_layout'
+    | '/_app/_layout/sip/branchs'
+    | '/_app/_layout/sip/trunks'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  AppSipBranchsRoute: typeof AppSipBranchsRoute
-  AppSipTrunksRoute: typeof AppSipTrunksRoute
+  AppLayoutRoute: typeof AppLayoutRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/_app/sip/trunks': {
-      id: '/_app/sip/trunks'
-      path: '/sip/trunks'
-      fullPath: '/sip/trunks'
-      preLoaderRoute: typeof AppSipTrunksRouteImport
+    '/_app/_layout': {
+      id: '/_app/_layout'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof AppLayoutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_app/sip/branchs': {
-      id: '/_app/sip/branchs'
+    '/_app/_layout/sip/trunks': {
+      id: '/_app/_layout/sip/trunks'
+      path: '/sip/trunks'
+      fullPath: '/sip/trunks'
+      preLoaderRoute: typeof AppLayoutSipTrunksRouteImport
+      parentRoute: typeof AppLayoutRoute
+    }
+    '/_app/_layout/sip/branchs': {
+      id: '/_app/_layout/sip/branchs'
       path: '/sip/branchs'
       fullPath: '/sip/branchs'
-      preLoaderRoute: typeof AppSipBranchsRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof AppLayoutSipBranchsRouteImport
+      parentRoute: typeof AppLayoutRoute
     }
   }
 }
 
+interface AppLayoutRouteChildren {
+  AppLayoutSipBranchsRoute: typeof AppLayoutSipBranchsRoute
+  AppLayoutSipTrunksRoute: typeof AppLayoutSipTrunksRoute
+}
+
+const AppLayoutRouteChildren: AppLayoutRouteChildren = {
+  AppLayoutSipBranchsRoute: AppLayoutSipBranchsRoute,
+  AppLayoutSipTrunksRoute: AppLayoutSipTrunksRoute,
+}
+
+const AppLayoutRouteWithChildren = AppLayoutRoute._addFileChildren(
+  AppLayoutRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
-  AppSipBranchsRoute: AppSipBranchsRoute,
-  AppSipTrunksRoute: AppSipTrunksRoute,
+  AppLayoutRoute: AppLayoutRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

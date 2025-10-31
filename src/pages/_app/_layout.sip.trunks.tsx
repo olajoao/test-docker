@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/_app/sip/trunks')({
+export const Route = createFileRoute('/_app/_layout/sip/trunks')({
   component: RouteComponent,
 })
 

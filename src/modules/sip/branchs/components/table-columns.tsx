@@ -26,27 +26,27 @@ export const columns: ColumnDef<SipBranchProps>[] = [
     header: "Conta SIP",
   },
   {
-    accessorKey: "completed",
+    accessorKey: "",
     header: "Regra de saída",
   },
   {
-    accessorKey: "userId",
+    accessorKey: "",
     header: "Senha",
   },
   {
-    accessorKey: "userId",
+    accessorKey: "",
     header: "ACL",
   },
   {
-    accessorKey: "userId",
+    accessorKey: "",
     header: "Grupo",
   },
   {
-    accessorKey: "userId",
+    accessorKey: "",
     header: "Status",
   },
   {
-    accessorKey: "userId",
+    accessorKey: "",
     header: "IP",
   },
 ]

@@ -1,17 +1,19 @@
-import { branchsService } from "@/api/services";
 import { useQuery } from "@tanstack/react-query"
-import { getRouteApi } from "@tanstack/react-router";
+import { branchsService } from "@/api/services"
+import { Route } from "@/pages/_app/_layout.sip.branchs"
 
 export const useBranchs = () => {
-  const route = getRouteApi('/_app/sip/branchs')
-  const params = route.useSearch()
+  const { filter } = Route.useSearch()
+  console.log("filter: ", filter)
 
   const listQuery = useQuery({
-    queryKey: ['sip-branchs'],
-    queryFn: () => branchsService.list(params)
+    queryKey: ["sip-branchs", filter],
+    queryFn: () => branchsService.list({ filter }),
   })
 
   return {
-    list: listQuery.data
+    list: listQuery.data?.slice(0, 10),
+    isLoading: listQuery.isPending || listQuery.isLoading,
   }
 }
+

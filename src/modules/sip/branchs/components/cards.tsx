@@ -8,7 +8,7 @@ interface CardProps {
   registeredIP: string
 }
 
-export function CardList({ cardData }: { cardData: CardProps }) {
+export function Cards({ cardData }: { cardData: CardProps }) {
   return (
     <div className="flex gap-5">
       <Card className="w-full p-3">
@@ -17,8 +17,8 @@ export function CardList({ cardData }: { cardData: CardProps }) {
             <span className="text-muted-foreground text-xs 2xl:text-sm">Ramais criados</span>
             <span className="font-semibold text-xl 2xl:text-xl">{cardData?.createdBranchs ?? 0}</span>
           </p>
-          <div className="p-2 rounded-md bg-sky-200">
-            <Phone className="w-4 2xl:w-5 h-4 2xl:h-5 text-sky-600" />
+          <div className="p-2 rounded-md bg-sky-100">
+            <Phone className="w-4 2xl:w-5 h-4 2xl:h-5 text-sky-500" />
           </div>
         </CardContent>
       </Card>
@@ -29,8 +29,8 @@ export function CardList({ cardData }: { cardData: CardProps }) {
             <span className="text-muted-foreground text-xs 2xl:text-sm">Ramais online</span>
             <span className="font-semibold text-xl 2xl:text-xl text-green-600">{cardData?.onlineBranchs ?? 0}</span>
           </p>
-          <div className="p-2 rounded-md bg-green-200">
-            <Phone className="w-4 2xl:w-5 h-4 2xl:h-5 text-green-600" />
+          <div className="p-2 rounded-md bg-green-100">
+            <Phone className="w-4 2xl:w-5 h-4 2xl:h-5 text-green-500" />
           </div>
         </CardContent>
       </Card>
@@ -41,8 +41,8 @@ export function CardList({ cardData }: { cardData: CardProps }) {
             <span className="text-muted-foreground text-xs 2xl:text-sm">Ramais offline</span>
             <span className="font-semibold text-xl 2xl:text-xl text-red-600">{cardData?.offlineBranchs ?? 0}</span>
           </p>
-          <div className="p-2 rounded-md bg-red-200">
-            <Phone className="w-4 2xl:w-5 h-4 2xl:h-5 text-red-600" />
+          <div className="p-2 rounded-md bg-red-100">
+            <Phone className="w-4 2xl:w-5 h-4 2xl:h-5 text-red-500" />
           </div>
         </CardContent>
       </Card>
@@ -53,8 +53,8 @@ export function CardList({ cardData }: { cardData: CardProps }) {
             <span className="text-muted-foreground text-xs 2xl:text-sm">IP de Registro</span>
             <span className="max-w-32 font-semibold text-lg text-purple-600 truncate">{cardData?.registeredIP ?? 0}</span>
           </p>
-          <div className="p-2 rounded-md bg-purple-200">
-            <Phone className="w-4 2xl:w-5 h-4 2xl:h-5 text-purple-600" />
+          <div className="p-2 rounded-md bg-purple-100">
+            <Phone className="w-4 2xl:w-5 h-4 2xl:h-5 text-purple-500" />
           </div>
         </CardContent>
       </Card>

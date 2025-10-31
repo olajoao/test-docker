@@ -1,3 +1,2 @@
-export * from "./card-list";
+export * from "./cards";
 export * from "./table-columns"
-export * from "./table-filter"

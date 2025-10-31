@@ -10,5 +10,5 @@ logs:
 sh:
 	@$(COMPOSE) exec web sh
 install:
-	@$(COMPOSE) run --rm web npm install
+	@$(COMPOSE) run --rm --remove-orphans web npm install
 	@echo "📦 Dependências instaladas no container (visíveis no host)."
