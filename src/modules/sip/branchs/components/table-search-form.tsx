@@ -21,6 +21,7 @@ export function TableSearchForm() {
       })
     }
   })
+
   return (
     <form className="flex-1" onSubmit={(e) => {
       e.preventDefault()
