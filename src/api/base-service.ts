@@ -7,8 +7,8 @@ export class BaseService<T, CreateDto = T, UpdateDto = Partial<T>> {
     this.endpoint = endpoint;
   }
 
-  async list(params?: unknown) {
-    const response = await http.get(this.endpoint, { params });
+  async list<T>(params?: unknown) {
+    const response = await http.get<T>(this.endpoint, { params });
     return response.data
   }
 
