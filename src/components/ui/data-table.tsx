@@ -1,7 +1,6 @@
 import {
   type ColumnDef,
   flexRender,
-  getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table"
 
@@ -13,21 +12,16 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-
+import type { SipBranchProps } from "@/modules/sip/branchs"
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
-  data: TData[]
+  table: ReturnType<typeof useReactTable<SipBranchProps>>
 }
 
 export function DataTable<TData, TValue>({
   columns,
-  data,
+  table
 }: DataTableProps<TData, TValue>) {
-  const table = useReactTable({
-    data,
-    columns,
-    getCoreRowModel: getCoreRowModel(),
-  })
 
   return (
     <div className="relative rounded-md border min-w-0 h-[calc(100dvh-242px)] overflow-y-auto">

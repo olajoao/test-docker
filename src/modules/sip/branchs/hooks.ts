@@ -4,12 +4,13 @@ import { Route } from "@/pages/_app/_layout.sip.branchs"
 import { getCoreRowModel, useReactTable } from "@tanstack/react-table"
 import { columns } from "./components"
 import type { SipBranchProps } from "./model"
+import { ENDPOINTS } from "@/shared/endpoints"
 
 export const useBranchs = () => {
   const { filter } = Route.useSearch()
 
   const listQuery = useQuery({
-    queryKey: ["sip-branchs", filter],
+    queryKey: [ENDPOINTS.SIP_BRANCHS, filter],
     queryFn: () => branchsService.list<SipBranchProps[]>({ filter }),
   })
 

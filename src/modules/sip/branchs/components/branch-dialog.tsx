@@ -35,7 +35,7 @@ export function BranchDialog() {
             Novo Ramal
           </Button>
         </DialogTrigger>
-        <DialogContent >
+        <DialogContent>
           <DialogHeader>
             <DialogTitle>Cadastrar Novo Ramal SIP</DialogTitle>
             <DialogDescription>Preencha as informações para criar um novo ramal no sistema</DialogDescription>
@@ -349,7 +349,7 @@ export function BranchDialog() {
               </AccordionContent>
             </AccordionItem>
 
-            <AccordionItem value="item-4" className="border p-3 rounded-md">
+            <AccordionItem value="item-4" className="last:border p-3 rounded-md">
               <AccordionTrigger className="justify-between outline-none focus-visible:ring-transparent hover:no-underline cursor-pointer font-semibold">
                 <div className="flex items-center gap-x-2">
                   <Globe />

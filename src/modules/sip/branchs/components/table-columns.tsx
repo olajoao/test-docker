@@ -4,6 +4,7 @@ import type { SipBranchProps } from "../model"
 export const columns: ColumnDef<SipBranchProps>[] = [
   {
     accessorKey: "id",
+    id: "Ramal",
     header: "Ramal",
   },
   {
@@ -19,6 +20,7 @@ export const columns: ColumnDef<SipBranchProps>[] = [
   },
   {
     accessorKey: "title",
+    id: 'Título',
     header: "Nome",
   },
   {

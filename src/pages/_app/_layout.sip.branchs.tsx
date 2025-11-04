@@ -7,6 +7,7 @@ import { TableSearchForm } from '@/modules/sip/branchs/components/table-search-f
 import { Button } from '@/components/ui/button';
 import { BookOpen, Download, SendIcon } from 'lucide-react';
 import { BranchDialog } from '@/modules/sip/branchs/components/branch-dialog';
+import { TableColumnsFilter } from '@/modules/sip/branchs/components/table-columns-filter';
 
 export const Route = createFileRoute('/_app/_layout/sip/branchs')({
   component: SipBranchs,
@@ -15,7 +16,7 @@ export const Route = createFileRoute('/_app/_layout/sip/branchs')({
 })
 
 function SipBranchs() {
-  const { list: branchs, isLoading } = useBranchs()
+  const { list: branchs, isLoading, table } = useBranchs()
 
   return (
     <div className="flex-1 space-y-8 min-w-0 overflow-hidden">
@@ -40,11 +41,13 @@ function SipBranchs() {
         </Button>
 
         <BranchDialog />
+
+        <TableColumnsFilter table={table} />
       </div>
 
       {isLoading ?
         <TableSkeleton rows={5} columns={10} />
-        : <DataTable columns={columns} data={branchs?.length ? branchs : []} />
+        : <DataTable columns={columns} table={table} />
       }
     </div>
   )
