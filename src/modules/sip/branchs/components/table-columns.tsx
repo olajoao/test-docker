@@ -1,5 +1,6 @@
 import type { ColumnDef } from "@tanstack/react-table"
 import type { SipBranchProps } from "../model"
+import TableSecretToggle from "./table-secret-toggle"
 
 export const columns: ColumnDef<SipBranchProps>[] = [
   {
@@ -34,6 +35,7 @@ export const columns: ColumnDef<SipBranchProps>[] = [
   {
     accessorKey: "secret",
     header: "Senha",
+    cell: ({ row }) => <TableSecretToggle secret={row.original.secret} />
   },
   {
     accessorKey: "dod",
