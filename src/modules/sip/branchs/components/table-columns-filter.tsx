@@ -34,7 +34,7 @@ export function TableColumnsFilter({ table }: { table: ReturnType<typeof useReac
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" className="ml-auto">
+        <Button size="sm" variant="outline" className="ml-auto text-xs 2xl:text-sm">
           Colunas <ChevronDown />
         </Button>
       </DropdownMenuTrigger>

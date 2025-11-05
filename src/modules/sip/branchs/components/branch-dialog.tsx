@@ -30,7 +30,7 @@ export function BranchDialog() {
     <Dialog>
       <form>
         <DialogTrigger asChild>
-          <Button variant="outline" className="cursor-pointer bg-emerald-600 text-white">
+          <Button size="sm" variant="outline" className="text-xs 2xl:text-sm cursor-pointer bg-emerald-600 text-white">
             <Plus />
             Novo Ramal
           </Button>

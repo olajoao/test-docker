@@ -1,4 +1,5 @@
 import { http } from "./http";
+import type { PaginatedResponse } from "./types/paginations";
 
 export class BaseService<T, CreateDto = T, UpdateDto = Partial<T>> {
   protected endpoint: string;
@@ -8,7 +9,7 @@ export class BaseService<T, CreateDto = T, UpdateDto = Partial<T>> {
   }
 
   async list<T>(params?: unknown) {
-    const response = await http.get<T>(this.endpoint, { params });
+    const response = await http.get<PaginatedResponse<T>>(this.endpoint, { params });
     return response.data
   }
 

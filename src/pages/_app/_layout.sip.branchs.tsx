@@ -19,23 +19,23 @@ function SipBranchs() {
   const { list: branchs, isLoading, table } = useBranchs()
 
   return (
-    <div className="flex-1 space-y-8 min-w-0 overflow-hidden">
+    <div className="flex-1 space-y-5 min-w-0 overflow-hidden">
       <Cards cardData={branchs} />
 
       <div className='flex items-center gap-5'>
         <TableSearchForm />
 
-        <Button variant="outline" className='cursor-pointer'>
+        <Button size="sm" variant="outline" className='cursor-pointer text-xs 2xl:text-sm'>
           <Download />
           Download CSV
         </Button>
 
-        <Button variant="outline" className='cursor-pointer'>
+        <Button size="sm" variant="outline" className='cursor-pointer text-xs 2xl:text-sm'>
           <BookOpen />
           Lista Telefônica
         </Button>
 
-        <Button variant="outline" className='cursor-pointer'>
+        <Button size="sm" variant="outline" className='cursor-pointer text-xs 2xl:text-sm'>
           <SendIcon />
           Ações em Lote
         </Button>

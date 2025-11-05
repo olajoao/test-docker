@@ -3,52 +3,52 @@ import type { SipBranchProps } from "../model"
 
 export const columns: ColumnDef<SipBranchProps>[] = [
   {
-    accessorKey: "id",
+    accessorKey: "name",
     id: "Ramal",
     header: "Ramal",
   },
   {
-    accessorKey: "completed",
+    accessorKey: "gravar",
     header: "Gravação",
     cell: ({ row }) => {
       return (
-        <span className={row.getValue('completed') ? 'text-green-600' : 'text-muted-foreground'}>
-          {row.getValue('completed') ? 'Tem gravação' : 'Não tem gravação'}
+        <span className={row.getValue('gravar') ? 'text-green-600' : 'text-muted-foreground'}>
+          {row.getValue('gravar') ? 'Tem gravação' : 'Não tem gravação'}
         </span>
       )
     }
   },
   {
-    accessorKey: "title",
+    accessorKey: "callerid",
     id: 'Título',
     header: "Nome",
   },
   {
-    accessorKey: "userId",
+    accessorKey: "ramal_virtual",
     header: "Conta SIP",
   },
   {
-    accessorKey: "",
+    accessorKey: "rota_saida",
     header: "Regra de saída",
   },
   {
-    accessorKey: "",
+    accessorKey: "secret",
     header: "Senha",
   },
   {
-    accessorKey: "",
+    accessorKey: "dod",
     header: "ACL",
   },
   {
-    accessorKey: "",
+    accessorKey: "callgroup",
     header: "Grupo",
   },
   {
-    accessorKey: "",
+    accessorKey: "status",
     header: "Status",
   },
   {
-    accessorKey: "",
+    accessorKey: "ip",
     header: "IP",
   },
 ]
