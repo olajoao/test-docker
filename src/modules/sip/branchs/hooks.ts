@@ -1,17 +1,17 @@
 import { useQuery } from "@tanstack/react-query"
-import { branchsService } from "@/api/services"
 import { Route } from "@/pages/_app/_layout.sip.branchs"
 import { getCoreRowModel, getPaginationRowModel, useReactTable } from "@tanstack/react-table"
 import { columns } from "./components"
 import type { SipBranchProps } from "./model"
 import { ENDPOINTS } from "@/shared/endpoints"
+import { baseService } from "@/api/services"
 
 export const useBranchs = () => {
   const { filter, page = 1, perPage = 15 } = Route.useSearch()
 
   const listQuery = useQuery({
     queryKey: [ENDPOINTS.SIP_BRANCHS, filter, page, perPage],
-    queryFn: () => branchsService.list<SipBranchProps>({ filter, page, per_page: perPage }),
+    queryFn: () => baseService.list<SipBranchProps>({ filter, page, per_page: perPage }),
   })
   const table = useReactTable({
     data: listQuery.data?.data ?? [],

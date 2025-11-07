@@ -9,7 +9,6 @@ export const Route = createFileRoute("/_app/_layout")({
 })
 
 export default function Layout() {
-
   return (
     <SidebarProvider>
       <AppSidebar />

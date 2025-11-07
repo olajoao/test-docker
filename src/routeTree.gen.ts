@@ -9,10 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './pages/__root'
+import { Route as AuthLoginRouteImport } from './pages/_auth/login'
 import { Route as AppLayoutRouteImport } from './pages/_app/_layout'
 import { Route as AppLayoutSipTrunksRouteImport } from './pages/_app/_layout.sip.trunks'
 import { Route as AppLayoutSipBranchsRouteImport } from './pages/_app/_layout.sip.branchs'
 
+const AuthLoginRoute = AuthLoginRouteImport.update({
+  id: '/_auth/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AppLayoutRoute = AppLayoutRouteImport.update({
   id: '/_app/_layout',
   getParentRoute: () => rootRouteImport,
@@ -29,37 +35,49 @@ const AppLayoutSipBranchsRoute = AppLayoutSipBranchsRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
+  '/login': typeof AuthLoginRoute
   '/sip/branchs': typeof AppLayoutSipBranchsRoute
   '/sip/trunks': typeof AppLayoutSipTrunksRoute
 }
 export interface FileRoutesByTo {
+  '/login': typeof AuthLoginRoute
   '/sip/branchs': typeof AppLayoutSipBranchsRoute
   '/sip/trunks': typeof AppLayoutSipTrunksRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_app/_layout': typeof AppLayoutRouteWithChildren
+  '/_auth/login': typeof AuthLoginRoute
   '/_app/_layout/sip/branchs': typeof AppLayoutSipBranchsRoute
   '/_app/_layout/sip/trunks': typeof AppLayoutSipTrunksRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/sip/branchs' | '/sip/trunks'
+  fullPaths: '/login' | '/sip/branchs' | '/sip/trunks'
   fileRoutesByTo: FileRoutesByTo
-  to: '/sip/branchs' | '/sip/trunks'
+  to: '/login' | '/sip/branchs' | '/sip/trunks'
   id:
     | '__root__'
     | '/_app/_layout'
+    | '/_auth/login'
     | '/_app/_layout/sip/branchs'
     | '/_app/_layout/sip/trunks'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   AppLayoutRoute: typeof AppLayoutRouteWithChildren
+  AuthLoginRoute: typeof AuthLoginRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/_auth/login': {
+      id: '/_auth/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof AuthLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_app/_layout': {
       id: '/_app/_layout'
       path: ''
@@ -100,6 +118,7 @@ const AppLayoutRouteWithChildren = AppLayoutRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   AppLayoutRoute: AppLayoutRouteWithChildren,
+  AuthLoginRoute: AuthLoginRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
