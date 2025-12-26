@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@ckeditor/ckeditor5-react": "^11.0.1",
+    "@ckeditor/ckeditor5-react": "^8.0.0",
     "@heroicons/react": "^2.2.0",
     "@hookform/resolvers": "^5.2.2",
     "@radix-ui/react-accordion": "^1.2.12",
@@ -34,7 +34,7 @@
     "@tanstack/react-router": "^1.133.22",
     "@tanstack/react-table": "^8.21.3",
     "axios": "^1.13.0",
-    "ckeditor5": "^47.3.0",
+    "ckeditor5": "43.0.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
