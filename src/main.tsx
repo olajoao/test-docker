@@ -7,7 +7,7 @@ import { routeTree } from './routeTree.gen'
 import { Toaster } from 'sonner'
 import './lib/i18n'
 
-export const queryClient = new QueryClient()
+import { queryClient } from '@/lib/react-query'
 const router = createRouter({
   routeTree,
 })

@@ -1,0 +1,102 @@
+export function WebRTCIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 220 200"
+      width="100%"
+      height="100%"
+    >
+      <circle
+        fill="#0089CC"
+        stroke="#0089CC"
+        strokeWidth="15"
+        r="15"
+        cx="20"
+        cy="65"
+      >
+        <animate
+          attributeName="cy"
+          calcMode="spline"
+          dur="2s"
+          values="65;135;65;"
+          keySplines=".5 0 .5 1;.5 0 .5 1"
+          repeatCount="indefinite"
+          begin="-.4s"
+        />
+      </circle>
+      <circle
+        fill="#BF0000"
+        stroke="#BF0000"
+        strokeWidth="15"
+        r="15"
+        cx="60"
+        cy="65"
+      >
+        <animate
+          attributeName="cy"
+          calcMode="spline"
+          dur="2s"
+          values="65;135;65;"
+          keySplines=".5 0 .5 1;.5 0 .5 1"
+          repeatCount="indefinite"
+          begin="-.2s"
+        />
+      </circle>
+      <circle
+        fill="#FFCC00"
+        stroke="#FFCC00"
+        strokeWidth="15"
+        r="15"
+        cx="100"
+        cy="65"
+      >
+        <animate
+          attributeName="cy"
+          calcMode="spline"
+          dur="2s"
+          values="65;135;65;"
+          keySplines=".5 0 .5 1;.5 0 .5 1"
+          repeatCount="indefinite"
+          begin="0s"
+        />
+      </circle>
+      <circle
+        fill="#009939"
+        stroke="#009939"
+        strokeWidth="15"
+        r="15"
+        cx="140"
+        cy="65"
+      >
+        <animate
+          attributeName="cy"
+          calcMode="spline"
+          dur="2s"
+          values="65;135;65;"
+          keySplines=".5 0 .5 1;.5 0 .5 1"
+          repeatCount="indefinite"
+          begin=".2s"
+        />
+      </circle>
+      <circle
+        fill="#FF6600"
+        stroke="#FF6600"
+        strokeWidth="15"
+        r="15"
+        cx="180"
+        cy="65"
+      >
+        <animate
+          attributeName="cy"
+          calcMode="spline"
+          dur="2s"
+          values="65;135;65;"
+          keySplines=".5 0 .5 1;.5 0 .5 1"
+          repeatCount="indefinite"
+          begin=".4s"
+        />
+      </circle>
+    </svg>
+
+  )
+}

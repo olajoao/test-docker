@@ -23,6 +23,8 @@ export const MOCK_PERMISSIONS: string[] = [
   "regras_saida",
   "agenda_persa",
   "callback",
+  "webrtc",
+  "mytalk",
   "discagem_rapida",
   "filas",
   "pop",

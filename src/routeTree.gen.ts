@@ -9,11 +9,29 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './pages/__root'
+import { Route as WebrtcRouteImport } from './pages/webrtc'
+import { Route as MytalkRouteImport } from './pages/mytalk'
+import { Route as MytalkChannelIdRouteImport } from './pages/mytalk.$channelId'
 import { Route as AuthLoginRouteImport } from './pages/_auth/login'
 import { Route as AppLayoutRouteImport } from './pages/_app/_layout'
 import { Route as AppLayoutSipTrunksRouteImport } from './pages/_app/_layout.sip.trunks'
 import { Route as AppLayoutSipBranchsRouteImport } from './pages/_app/_layout.sip.branchs'
 
+const WebrtcRoute = WebrtcRouteImport.update({
+  id: '/webrtc',
+  path: '/webrtc',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MytalkRoute = MytalkRouteImport.update({
+  id: '/mytalk',
+  path: '/mytalk',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MytalkChannelIdRoute = MytalkChannelIdRouteImport.update({
+  id: '/$channelId',
+  path: '/$channelId',
+  getParentRoute: () => MytalkRoute,
+} as any)
 const AuthLoginRoute = AuthLoginRouteImport.update({
   id: '/_auth/login',
   path: '/login',
@@ -35,42 +53,89 @@ const AppLayoutSipBranchsRoute = AppLayoutSipBranchsRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
+  '/mytalk': typeof MytalkRouteWithChildren
+  '/webrtc': typeof WebrtcRoute
   '/login': typeof AuthLoginRoute
+  '/mytalk/$channelId': typeof MytalkChannelIdRoute
   '/sip/branchs': typeof AppLayoutSipBranchsRoute
   '/sip/trunks': typeof AppLayoutSipTrunksRoute
 }
 export interface FileRoutesByTo {
+  '/mytalk': typeof MytalkRouteWithChildren
+  '/webrtc': typeof WebrtcRoute
   '/login': typeof AuthLoginRoute
+  '/mytalk/$channelId': typeof MytalkChannelIdRoute
   '/sip/branchs': typeof AppLayoutSipBranchsRoute
   '/sip/trunks': typeof AppLayoutSipTrunksRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/mytalk': typeof MytalkRouteWithChildren
+  '/webrtc': typeof WebrtcRoute
   '/_app/_layout': typeof AppLayoutRouteWithChildren
   '/_auth/login': typeof AuthLoginRoute
+  '/mytalk/$channelId': typeof MytalkChannelIdRoute
   '/_app/_layout/sip/branchs': typeof AppLayoutSipBranchsRoute
   '/_app/_layout/sip/trunks': typeof AppLayoutSipTrunksRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/login' | '/sip/branchs' | '/sip/trunks'
+  fullPaths:
+    | '/mytalk'
+    | '/webrtc'
+    | '/login'
+    | '/mytalk/$channelId'
+    | '/sip/branchs'
+    | '/sip/trunks'
   fileRoutesByTo: FileRoutesByTo
-  to: '/login' | '/sip/branchs' | '/sip/trunks'
+  to:
+    | '/mytalk'
+    | '/webrtc'
+    | '/login'
+    | '/mytalk/$channelId'
+    | '/sip/branchs'
+    | '/sip/trunks'
   id:
     | '__root__'
+    | '/mytalk'
+    | '/webrtc'
     | '/_app/_layout'
     | '/_auth/login'
+    | '/mytalk/$channelId'
     | '/_app/_layout/sip/branchs'
     | '/_app/_layout/sip/trunks'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
+  MytalkRoute: typeof MytalkRouteWithChildren
+  WebrtcRoute: typeof WebrtcRoute
   AppLayoutRoute: typeof AppLayoutRouteWithChildren
   AuthLoginRoute: typeof AuthLoginRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/webrtc': {
+      id: '/webrtc'
+      path: '/webrtc'
+      fullPath: '/webrtc'
+      preLoaderRoute: typeof WebrtcRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mytalk': {
+      id: '/mytalk'
+      path: '/mytalk'
+      fullPath: '/mytalk'
+      preLoaderRoute: typeof MytalkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mytalk/$channelId': {
+      id: '/mytalk/$channelId'
+      path: '/$channelId'
+      fullPath: '/mytalk/$channelId'
+      preLoaderRoute: typeof MytalkChannelIdRouteImport
+      parentRoute: typeof MytalkRoute
+    }
     '/_auth/login': {
       id: '/_auth/login'
       path: '/login'
@@ -102,6 +167,17 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface MytalkRouteChildren {
+  MytalkChannelIdRoute: typeof MytalkChannelIdRoute
+}
+
+const MytalkRouteChildren: MytalkRouteChildren = {
+  MytalkChannelIdRoute: MytalkChannelIdRoute,
+}
+
+const MytalkRouteWithChildren =
+  MytalkRoute._addFileChildren(MytalkRouteChildren)
+
 interface AppLayoutRouteChildren {
   AppLayoutSipBranchsRoute: typeof AppLayoutSipBranchsRoute
   AppLayoutSipTrunksRoute: typeof AppLayoutSipTrunksRoute
@@ -117,6 +193,8 @@ const AppLayoutRouteWithChildren = AppLayoutRoute._addFileChildren(
 )
 
 const rootRouteChildren: RootRouteChildren = {
+  MytalkRoute: MytalkRouteWithChildren,
+  WebrtcRoute: WebrtcRoute,
   AppLayoutRoute: AppLayoutRouteWithChildren,
   AuthLoginRoute: AuthLoginRoute,
 }

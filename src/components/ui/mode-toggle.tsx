@@ -7,17 +7,15 @@ export function ModeToggle() {
   return (
     <button
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-      className="flex items-center gap-2 w-full"
+      className="flex items-center cursor-pointer justify-end gap-2 w-full"
     >
       {theme === "light" ? (
         <>
           <Moon className="h-4 w-4" />
-          <span>Dark Mode</span>
         </>
       ) : (
         <>
           <Sun className="h-4 w-4" />
-          <span>Light Mode</span>
         </>
       )}
     </button>
