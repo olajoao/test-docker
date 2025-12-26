@@ -1,6 +1,6 @@
 export const endpoints = {
   mytalk: {
     // Compat: endpoint usado em `useBranchPermissions`
-    branchPermissions: 'my_talk_branch_permissions',
+    branchPermissions: 'my_talk_users/permissions'
   },
 } as const;

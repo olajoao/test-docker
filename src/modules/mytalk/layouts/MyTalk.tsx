@@ -56,30 +56,12 @@ function MyTalkLayout() {
     }
   }, [isLoadingBranchPermissions])
 
-  console.log('[mytalk][MyTalkLayout] state', {
-    firstLoadDone,
-    isLoadingBranchPermissions,
-    permissions,
-    should_logout: permissions?.should_logout,
-    allow_mytalk: permissions?.allow_mytalk,
-    allow_webrtc: permissions?.allow_webrtc,
-    error,
-    pathname,
-  })
-
   if(permissions?.should_logout) {
-    console.log('[mytalk][MyTalkLayout] should_logout=true -> logout()')
     logout();
     return null;
   }
   if(!firstLoadDone && isLoadingBranchPermissions) return <MytalkLoadingSkeleton />
   if(!isLoadingBranchPermissions && !permissions?.allow_mytalk) {
-    console.log('[mytalk][MyTalkLayout] NotAllowed rendered', {
-      isLoadingBranchPermissions,
-      firstLoadDone,
-      permissions,
-      error,
-    })
     return <NotAllowed />
   }
 

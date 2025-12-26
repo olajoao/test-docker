@@ -214,8 +214,6 @@ export function FloatingWebRTC({
    */
   const handleIframeLoad = useCallback(() => {
     setIsLoading(false);
-    console.log("[FloatingWebRTC] Estado de loading desativado.");
-
     if (!iframeRef.current) {
       console.error(
         "[FloatingWebRTC] Erro: A referência do iframe é nula no momento do envio.",

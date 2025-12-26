@@ -66,7 +66,7 @@ function ChannelGroupForm({ groupChannel }: { groupChannel?: ChannelProps }) {
               <FormLabel>Membros</FormLabel>
 
               <div className="space-y-1 max-h-[50dvh] overflow-auto">
-                {data?.contactList?.data.map((contact) => (
+                {Array.isArray(data?.contactList?.data) && data.contactList.data.map((contact) => (
                   <FormItem
                     key={contact.id}
                     className="flex flex-row items-start space-x-3 space-y-0"

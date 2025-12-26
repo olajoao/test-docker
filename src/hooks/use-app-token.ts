@@ -61,7 +61,6 @@ export interface AppTokenProps {
 export const useAppToken = () => {
   const serialized = localStorage.getItem('app_token')
   if (!serialized) {
-    console.log('[mytalk][useAppToken] missing localStorage.app_token')
     return {}
   }
 
@@ -82,18 +81,8 @@ export const useAppToken = () => {
       },
     }
 
-    console.log('[mytalk][useAppToken] parsed app_token', {
-      allow_mytalk: (appToken as any).allow_mytalk,
-      allow_webrtc: (appToken as any).allow_webrtc,
-      view_mytalk: appToken.settings?.view_mytalk,
-      sip_rwp: appToken.sip_rwp,
-      base_url: appToken.base_url,
-      has_access_token: Boolean((appToken as any).access_token),
-    })
-
     return { appToken }
   } catch {
-    console.log('[mytalk][useAppToken] failed to decode/parse app_token')
     return {}
   }
 }
