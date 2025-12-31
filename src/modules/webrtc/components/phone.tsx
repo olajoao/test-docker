@@ -203,8 +203,8 @@ export function Phone({ onExit }: PhoneProps) {
             {
               // Mobile: esconder teclado durante chamada recebida e durante chamada ativa (até o usuário alternar)
               'hidden sm:flex': hasIncomingCall || (hasActiveCall && !showDialpad),
-              // Desktop: comportamento legado (esconde dialer durante chamada, a não ser que esteja em modo teclado)
-              'lg:hidden': hasActiveCall && !showDialpad,
+              // Desktop: manter visível em telas maiores (≥ 649px)
+              'lg:flex': true,
             }
           )}
         >

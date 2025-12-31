@@ -56,6 +56,14 @@ function MyTalkLayout() {
     }
   }, [isLoadingBranchPermissions])
 
+  const canShowWebRTC = permissions?.allow_webrtc === true
+
+  useEffect(() => {
+    if (!canShowWebRTC && showWebRTC) {
+      setShowWebRTC(false)
+    }
+  }, [canShowWebRTC, showWebRTC])
+
   if(permissions?.should_logout) {
     logout();
     return null;
@@ -73,7 +81,7 @@ function MyTalkLayout() {
 
         {pathname === '/mytalk' || pathname === '/mytalk/' ? <EmptyChat /> : null}
 
-        {permissions?.allow_webrtc ? (
+        {canShowWebRTC ? (
           <>
             <WebRTCButton
               onClick={handleOpenWebRTC}

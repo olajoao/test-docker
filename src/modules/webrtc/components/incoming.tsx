@@ -65,17 +65,17 @@ export function Incoming({ session, onAnswer, onReject }: IncomingProps) {
       {/* Animated Rings */}
       <div className="relative mb-8">
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-32 h-32 rounded-full bg-primary/20 animate-ping" />
+          <div className="w-16 h-16 rounded-full bg-primary/20 animate-ping" />
         </div>
-        <div className="relative w-20 h-20 rounded-full bg-primary flex items-center justify-center">
-          <PhoneCall className="w-10 h-10 text-primary-foreground" />
+        <div className="relative flex items-center justify-center">
+          <PhoneCall className="w-16 h-16" />
         </div>
       </div>
 
       {/* Caller Info */}
       <div className="text-center mb-12 space-y-2">
-        <h1 className="text-3xl font-bold">{name}</h1>
-        <p className="text-muted-foreground">Chamada recebida...</p>
+        <h1 className="text-2xl font-bold">{name}</h1>
+        <p className="text-sm text-muted-foreground">Chamada recebida...</p>
       </div>
 
       {/* Action Buttons */}
@@ -91,7 +91,6 @@ export function Incoming({ session, onAnswer, onReject }: IncomingProps) {
           >
             <PhoneOff className="h-7 w-7" />
           </Button>
-          <span className="text-sm text-muted-foreground">Rejeitar</span>
         </div>
 
         {/* Answer Button */}
@@ -118,7 +117,6 @@ export function Incoming({ session, onAnswer, onReject }: IncomingProps) {
               >
                 <Phone className="h-7 w-7" />
               </Button>
-              <span className="text-sm text-muted-foreground">Atender</span>
             </>
           )}
         </div>

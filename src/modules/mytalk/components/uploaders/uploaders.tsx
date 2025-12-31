@@ -18,7 +18,7 @@ export function Uploaders() {
   return (
     <div className="relative">
       <Button
-        className=" dark:text-white"
+        className=" dark:text-white cursor-pointer"
         variant="ghost"
         size="icon"
         onClick={() => setIsOpen(!isOpen)}

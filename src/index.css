@@ -154,7 +154,8 @@ html {
   }
 
   .dark .main-container .ck-editor__editable {
-    background: hsl(var(--background)) !important;
+    background: color-mix(in oklab, var(--input) 30%, transparent) !important;
+    border: 1px solid rgb(255 255 255 / 15%) !important;
   }
 
   .dark .main-container .ck-toolbar_grouping .ck-button {
@@ -164,6 +165,7 @@ html {
   .main-container .ck-sticky-panel__content {
     border: transparent !important;
   }
+
 }
 
 @layer utilities {

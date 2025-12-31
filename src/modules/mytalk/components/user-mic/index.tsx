@@ -27,7 +27,7 @@ export function UserMic() {
         onClick={startRecording}
         variant="ghost"
         size="icon"
-        className="focus-within:bg-muted-foreground/20 focus:bg-muted-foreground/20"
+        className="cursor-pointer focus-within:bg-muted-foreground/20 focus:bg-muted-foreground/20"
       >
         <MicIcon className="dark:text-white w-6 h-6" />
       </Button>

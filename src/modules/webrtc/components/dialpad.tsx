@@ -110,10 +110,10 @@ export function Dialpad({
             size="icon"
             onClick={handleBackspace}
             disabled={!uri || uri.length === 0}
-            className="h-10 w-10"
+            className="h-10 w-10 cursor-pointer"
             aria-label="Apagar"
           >
-            <Delete className="h-4 w-4 text-muted-foreground" />
+            <Delete className="h-4 w-4 cursor-pointer text-muted-foreground" />
           </Button>
         </div>
 
@@ -128,7 +128,7 @@ export function Dialpad({
               className={cn(
                 'h-10 w-[60px] sm:h-[60px] text-xl font-semibold',
                 'hover:bg-accent hover:scale-105 transition-transform',
-                'active:scale-95'
+                'active:scale-95 cursor-pointer'
               )}
               aria-label={`Dígito ${digit}`}
             >

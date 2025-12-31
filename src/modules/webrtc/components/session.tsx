@@ -419,8 +419,9 @@ export function Session({ session, remoteDisplayName, onNotify }: SessionProps) 
       <div className="flex flex-col items-center justify-center gap-6 max-w-md w-full px-6">
         {/* Avatar */}
         <div className="relative">
-          <div className="w-32 h-32  flex items-center justify-center">
+          <div className="w-16 h-16 flex items-center justify-center">
             <User className="w-16 h-16 text-primary" />
+            <div className="absolute inset-0 rounded-full bg-primary/20 animate-ping"></div>
           </div>
           {/* Pulse animation for active call */}
           {!ringing && duration > 0 && (

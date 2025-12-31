@@ -4,62 +4,59 @@ import { useQuery } from "@tanstack/react-query";
 import { useAppToken } from "@/hooks/use-app-token";
 import { httpClient } from "../api/adapter";
 
-interface BranchPermissionsProps {
-  allow_mytalk: boolean
-  allow_webrtc: boolean
-  should_logout: boolean
+interface BranchPermissions {
+  allow_mytalk: boolean;
+  allow_webrtc: boolean;
+  should_logout: boolean;
 }
 
-const MINUTES_TO_REFETCH = 2 * 60 * 1000;
+const REFRESH_INTERVAL = 2 * 60 * 1000;
 
 export const useBranchPermissions = () => {
-  const { appToken } = useAppToken()
+  const { appToken } = useAppToken();
 
-  const fallbackPermissions: BranchPermissionsProps | undefined = appToken
+  const canFetch = Boolean(appToken?.sip_rwp && appToken?.base_url);
+
+  const fallbackPermissions: any | undefined = appToken
     ? {
-        allow_mytalk:
-        Number((appToken as any).allow_mytalk ?? 0) === 1 ,
-        allow_webrtc: Number((appToken as any).allow_webrtc ?? 0) === 1,
-        should_logout: false,
+        allow_mytalk: Boolean(appToken.allow_mytalk),
+        allow_webrtc: Boolean(appToken.allow_webrtc),
       }
-    : undefined
+    : undefined;
 
-  const params = new URLSearchParams()
-  if(appToken?.sip_rwp) {
-    params.set('p', appToken?.sip_rwp ?? '')
-  }
-
-  const canFetchBranchPermissions = Boolean(appToken?.sip_rwp && appToken?.base_url)
+  const params = appToken?.sip_rwp
+    ? new URLSearchParams({ p: appToken.sip_rwp })
+    : undefined;
 
   const {
     data: permissions,
+    error,
     isFetching,
     isPending,
-    error,
-  } = useQuery({
-    queryKey: [cacheKey.mytalk.branchPermissions, appToken?.sip_rwp ?? null],
-    enabled: canFetchBranchPermissions,
+  } = useQuery<BranchPermissions>({
+    queryKey: [cacheKey.mytalk.branchPermissions, appToken?.sip_rwp],
+    enabled: canFetch,
+    staleTime: REFRESH_INTERVAL,
+    refetchInterval: REFRESH_INTERVAL,
+    retry: 1,
     queryFn: async () => {
-      if (!appToken?.base_url) {
-        throw new Error("Missing app_token.base_url for MyTalk request")
+      if (!params) {
+        throw new Error("Missing sip_rwp param");
       }
-      const response = await httpClient.getDefault<BranchPermissionsProps>(
-        endpoints.mytalk.branchPermissions,
-        { params },
-      )
 
-      const data = response.data;
-      return data as BranchPermissionsProps
+      return httpClient.getDefault<BranchPermissions>(
+        endpoints.mytalk.branchPermissions,
+        params,
+      );
     },
-    staleTime: MINUTES_TO_REFETCH,
-    refetchInterval: MINUTES_TO_REFETCH,
   });
 
+  const finalPermissions =
+    permissions ?? (error || !canFetch ? fallbackPermissions : undefined);
+
   return {
-    permissions: permissions ?? fallbackPermissions,
-    isLoadingBranchPermissions: canFetchBranchPermissions
-      ? isPending || isFetching
-      : false,
+    permissions: finalPermissions,
+    isLoadingBranchPermissions: canFetch && (isPending || isFetching),
     error,
   };
 };

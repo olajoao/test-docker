@@ -57,7 +57,8 @@ function ChannelModal() {
                 Carregando contatos...
               </div>
             ) : null}
-            {Array.isArray(contactList?.data) && contactList.data.map((contact) => (
+              {contactList?.data &&
+                    Object.values(contactList.data).map((contact) => (
               <Button
                 key={contact.id}
                 variant="ghost"
@@ -74,6 +75,7 @@ function ChannelModal() {
                 <span className="text-sm font-normal truncate">{contact.nome}</span>
               </Button>
             ))}
+
           </div>
         </SheetContent>
       </Sheet>
