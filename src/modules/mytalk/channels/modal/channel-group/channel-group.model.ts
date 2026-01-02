@@ -1,4 +1,3 @@
-import { useWhoAmIUserContext } from "@/context/who-am-i-user";
 import { getIdFromResponseHeadersLocation } from "@/helpers/get-response-header-id";
 import { useModal } from "@/hooks/use-modal";
 import { queryClient } from "@/lib/react-query";
@@ -23,6 +22,7 @@ import {
 } from "./channel-group.service";
 import { channelKeys } from "../../channel.keys";
 import type { ChannelProps } from "../../channel.types";
+import { useWhoAmIUserContext } from "@/modules/mytalk/stores/who-am-i-user";
 
 export const useChannelGroupModel = (groupChannel?: ChannelProps) => {
   const navigate = useNavigate();

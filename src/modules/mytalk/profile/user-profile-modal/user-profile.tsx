@@ -18,13 +18,13 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import type { WhoAmIUser } from "@/interfaces/who-am-i";
 import { PersonIcon } from "@radix-ui/react-icons";
 import { Loader2, Trash2 } from "lucide-react";
 import { Suspense } from "react";
 import { useWindowSize } from "usehooks-ts";
 import UserProfileForm from "./user-profile.form";
 import { useUserProfileModel } from "./user-profile.model";
+import type { WhoAmIUser } from "../../interfaces/who-am-i";
 
 function UserProfileModal({ user }: { user: WhoAmIUser }) {
   const { width } = useWindowSize();

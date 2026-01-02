@@ -1,5 +1,4 @@
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { useWhoAmIUserContext } from "@/context/who-am-i-user";
 import { Link } from "@tanstack/react-router";
 import { Channel } from "./channel";
 import { useChannels } from "./channel.hooks";
@@ -7,6 +6,7 @@ import ChannelModal from "./modal/channel/channel-modal";
 import { ExitIcon } from "@radix-ui/react-icons";
 import { useLogout } from "@/hooks/use-logout";
 import UserProfileModal from "../profile/user-profile-modal/user-profile";
+import { useWhoAmIUserContext } from "../stores/who-am-i-user";
 
 type MyTalkProps = {
   groupTitle?: string;

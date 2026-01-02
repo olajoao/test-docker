@@ -7,9 +7,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import type { WhoAmIUser } from "@/interfaces/who-am-i";
 import { PersonIcon } from "@radix-ui/react-icons";
 import { useUserProfileModel } from "./user-profile.model";
+import type { WhoAmIUser } from "../../interfaces/who-am-i";
 
 function UserProfileForm({ user }: { user: WhoAmIUser }) {
   const { data, state, actions } = useUserProfileModel({ user });

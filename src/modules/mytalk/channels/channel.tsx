@@ -5,7 +5,7 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useWhoAmIUserContext } from "@/context/who-am-i-user";
+ 
 import { UserGroupIcon, UserIcon } from "@heroicons/react/24/outline";
 import { DotsVerticalIcon } from "@radix-ui/react-icons";
 import { formatDistanceToNowStrict } from "date-fns";
@@ -16,6 +16,7 @@ import DeleteChannel from "./modal/delete-channel/delete-channel";
 import { useEffect, useState } from "react";
 import { EChannelTypes, type ChannelProps } from "./channel.types";
 import type { WebUserApiProps } from "../users/users.types";
+import { useWhoAmIUserContext } from "../stores/who-am-i-user";
 
 export type Message = {
   id: string;

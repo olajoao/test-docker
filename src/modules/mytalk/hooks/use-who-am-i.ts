@@ -1,8 +1,8 @@
 import { httpClient } from "@/modules/mytalk/api/adapter";
-import type { WhoAmIUser } from "@/interfaces/who-am-i";
 import { userCacheKey } from "../users/users.cache-key";
 import { useQuery } from "@tanstack/react-query";
 import { useAppToken } from "@/hooks/use-app-token";
+import type { WhoAmIUser } from "../interfaces/who-am-i";
 
 export const useWhoAmI = () => {
   const { appToken } = useAppToken()

@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 
-import { WhoAmIUserContextProvider } from '@/context/who-am-i-user'
 import MyTalkLayout from '@/modules/mytalk/layouts/MyTalk'
+import { WhoAmIUserContextProvider } from '@/modules/mytalk/stores/who-am-i-user'
 
 export const Route = createFileRoute('/mytalk')({
   component: RouteComponent,

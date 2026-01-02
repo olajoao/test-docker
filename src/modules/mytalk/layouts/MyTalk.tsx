@@ -1,4 +1,3 @@
-import { useBranchPermissions } from "@/hooks/mytalk/use-branch-permissions";
 import { Aside } from "@/modules/mytalk/channels/aside";
 import { NotAllowed } from "@/modules/mytalk/not-allowed";
 import { useCallback, useEffect, useState } from "react";
@@ -9,6 +8,7 @@ import { useMicrophonePermission } from "@/modules/mytalk/components/web-rtc/hoo
 import { MytalkLoadingSkeleton } from "./MytalkLoadingSkeleton";
 import { useLogout } from "@/hooks/use-logout";
 import { EmptyChat } from "@/modules/mytalk/empty";
+import { useBranchPermissions } from "../hooks/use-branch-permissions";
 
 const changeFavicon = (newFavicon: string): void => {
   let link: HTMLLinkElement | null = document.querySelector("link[rel~='icon']");

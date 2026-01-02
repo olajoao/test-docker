@@ -1,8 +1,8 @@
-import { MicIcon } from "@/components/icons/MicIcon"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
 import { useAudioModel } from "../audio/audio.model"
 import { AudioRecorderOptimized } from "./audio-recorder-optimized"
+import { MicIcon } from "../icons/MicIcon"
 
 export function UserMic() {
   const [isRecordingAudio, setIsRecordingAudio] = useState(false)

@@ -1,4 +1,3 @@
-import { useWhoAmIUserContext } from "@/context/who-am-i-user";
 
 import { UserIcon, UserGroupIcon } from "@heroicons/react/24/outline";
 import { CheckIcon, ResetIcon } from "@radix-ui/react-icons";
@@ -8,6 +7,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useEffect, useState } from "react";
 import { EChannelTypes, type ChannelProps } from "../channels/channel.types";
 import type { WebUserApiProps } from "../users/users.types";
+import { useWhoAmIUserContext } from "../stores/who-am-i-user";
 
 export function ChatHeader({ channel }: { channel?: ChannelProps }) {
  const [storageUsers, setStorageUsers] = useState<WebUserApiProps[]>([])

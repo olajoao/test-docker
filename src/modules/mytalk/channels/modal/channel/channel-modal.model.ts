@@ -1,4 +1,3 @@
-import { useWhoAmIUserContext } from "@/context/who-am-i-user";
 import { getIdFromResponseHeadersLocation } from "@/helpers/get-response-header-id";
 import { queryClient } from "@/lib/react-query";
 import { useSheetStore } from "@/store/sheet";
@@ -8,6 +7,7 @@ import { useNavigate } from "@tanstack/react-router";
 import { channelKeys } from "../../channel.keys";
 import { EChannelTypes } from "../../channel.types";
 import { createChannelService } from "./channel-modal.service";
+import { useWhoAmIUserContext } from "@/modules/mytalk/stores/who-am-i-user";
 
 export const useChannelModalModel = () => {
   const { user } = useWhoAmIUserContext();

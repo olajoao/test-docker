@@ -1,6 +1,6 @@
-import type { WhoAmIUser } from "@/interfaces/who-am-i";
 import { useEffect, useState } from "react";
 import { useGetWhoAmI } from "./use-who-am-i";
+import type { WhoAmIUser } from "../interfaces/who-am-i";
 
 export function useContactInfo({ contactId }: { contactId?: number }) {
   if (!contactId) return;

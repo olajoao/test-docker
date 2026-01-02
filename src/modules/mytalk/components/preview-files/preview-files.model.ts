@@ -1,4 +1,3 @@
-import { useWhoAmIUserContext } from "@/context/who-am-i-user";
 import { useModal } from "@/hooks/use-modal";
 import { queryClient } from "@/lib/react-query";
 import { channelMessageKeys } from "@/modules/mytalk/channels/messages/channel.messages.keys";
@@ -7,7 +6,8 @@ import { useImageAndVideoStore } from "@/store/image-n-video-store";
 import { ModalType } from "@/store/modal";
 import { useMutation } from "@tanstack/react-query";
 import { format } from "date-fns";
-import { useMyTalkChannelId } from "@/modules/mytalk/hooks/use-current-channel-id";
+import { useMyTalkChannelId } from "../../hooks/use-current-channel-id";
+import { useWhoAmIUserContext } from "../../stores/who-am-i-user";
 
 export const usePreviewFilesModel = () => {
   const channelId = useMyTalkChannelId();

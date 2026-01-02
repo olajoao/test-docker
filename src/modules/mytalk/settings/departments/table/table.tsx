@@ -1,4 +1,3 @@
-import { Meta } from "@/interfaces/reports";
 import {
   ColumnFiltersState,
   flexRender,
@@ -32,7 +31,8 @@ import {
 } from "@/components/ui/table";
 import { DividerVerticalIcon } from "@radix-ui/react-icons";
 import DepartmentModal from "../modal/department-modal/department-modal";
-import { LoadingTable } from "@/components/mytalk/loading-table";
+import { LoadingTable } from "@/modules/mytalk/components/loading-table";
+import type { Meta } from "@/modules/mytalk/interfaces/reports";
 
 interface DepartmentTableProps {
   departments: DepartmentProps[];

@@ -1,15 +1,15 @@
 import AuthenticatedFile from "@/components/autheticated-file";
 import { Button } from "@/components/ui/button";
-import { useWhoAmIUserContext } from "@/context/who-am-i-user";
 import { handleDownload } from "@/helpers/download-image";
 import { FileIcon } from "@radix-ui/react-icons";
 import { format, isToday } from "date-fns";
 import { forwardRef, Suspense } from "react";
 import { Fragment } from "react/jsx-runtime";
 import MessageOptions from "../channels/messages/message-options";
-import FullImage from "@/components/full-image/full-image";
-import FullImageFooter from "@/components/full-image/full-image-footer";
 import type { ChannelMessageProps } from "../channels/messages/channel.messages.types";
+import FullImageFooter from "../components/full-image/full-image-footer";
+import FullImage from "../components/full-image/full-image";
+import { useWhoAmIUserContext } from "../stores/who-am-i-user";
 
 function defineFileType(fileType: string): string {
   const imagesArray = [

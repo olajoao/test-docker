@@ -1,7 +1,7 @@
-import { useWhoAmI } from "@/hooks/mytalk/use-who-am-i";
 import { useAppToken } from "@/hooks/use-app-token";
 import React, { createContext, useContext } from "react";
 import type { ReactNode } from "react";
+import { useWhoAmI } from "../hooks/use-who-am-i";
 import type { WhoAmIUser } from "../interfaces/who-am-i";
 
 interface WhoAmIUserContextType {

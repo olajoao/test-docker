@@ -1,10 +1,10 @@
-import { ChatFooter } from "@/components/mytalk/chat-footer";
-import { ChatHeader } from "@/components/mytalk/chat-header";
-import { ShowImageModal } from "@/components/preview-files/preview-files-modal";
 import { EmptyChat } from "../../empty";
 import { useChannel } from "../channel.hooks";
 import MessageList from "./message-list";
 import { EChannelTypes } from "../channel.types";
+import { ShowImageModal } from "../../components/preview-files/preview-files-modal";
+import { ChatHeader } from "../../components/chat-header";
+import { ChatFooter } from "../../components/chat-footer";
 
 export function MessageView({ channelId }: { channelId?: string }) {
   const { channel } = useChannel({

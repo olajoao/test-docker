@@ -3,13 +3,13 @@ import { useMutationState } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 import { lazy, Suspense, useEffect, useLayoutEffect, useRef } from "react";
 import { channelMessageKeys } from "./channel.messages.keys";
-import { useChannelInfinityMessages } from "@/hooks/mytalk/use-infinity-messages";
 import { useImageAndVideoStore } from "@/store/image-n-video-store";
-import { DragAndDrop } from "@/components/mytalk/drag-and-drop/drag-and-drop";
-import { useWhoAmIUserContext } from "@/context/who-am-i-user";
 import MessageSkeleton from "../../chat/message-skeleton";
 import { useScrollMessageListStore } from "@/store/scroll-message-list";
 import type { ChannelMessageProps } from "./channel.messages.types";
+import { useChannelInfinityMessages } from "../../hooks/use-infinity-messages";
+import { DragAndDrop } from "../../components/drag-and-drop/drag-and-drop";
+import { useWhoAmIUserContext } from "../../stores/who-am-i-user";
 
 const LazyMessage = lazy(() => import("../../chat/message"));
 
