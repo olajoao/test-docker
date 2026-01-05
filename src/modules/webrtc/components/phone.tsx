@@ -288,7 +288,6 @@ function Footer() {
   return (
     <footer className="flex-none border-t bg-muted/50">
       <div className="flex flex-col sm:flex-row items-center gap-2 py-2 px-4 text-xs text-muted-foreground ">
-        <p>© 2025 Saperx - All rights reserved</p>
       </div>
     </footer>
   );

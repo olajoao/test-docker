@@ -29,13 +29,6 @@ export const usePermissionStore = create<PermissionState>()(
           if (permissions.length === 0) return false;
           return requiredPermissions.every((p: string) => permissions.includes(p));
         },
-
-        hasAnyPermission: (requiredPermissions: string[]) => {
-          const { permissions, status } = get();
-          if (status !== 'loaded') return false;
-          if (permissions.length === 0) return false;
-          return requiredPermissions.some((p: string) => permissions.includes(p));
-        },
  
         // ============================================
         // SETTERS - Gerenciamento de estado

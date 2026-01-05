@@ -154,8 +154,3 @@ export const useHasAllPermissions = (permissions: string[]) => {
   const hasAllPermissions = usePermissionStore(state => state.hasAllPermissions)
   return hasAllPermissions(permissions)
 }
-
-export const useHasAnyPermission = (permissions: string[]) => {
-  const hasAnyPermission = usePermissionStore(state => state.hasAnyPermission)
-  return hasAnyPermission(permissions)
-}

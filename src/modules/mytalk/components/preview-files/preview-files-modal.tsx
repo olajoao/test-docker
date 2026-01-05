@@ -1,5 +1,4 @@
 import { fileType } from "@/helpers/get-file-type";
-import { useImageAndVideoStore } from "@/store/image-n-video-store";
 import { DocumentTextIcon, SpeakerWaveIcon } from "@heroicons/react/24/outline";
 import { PaperPlaneIcon, VideoIcon } from "@radix-ui/react-icons";
 import { useEffect, useRef, useState } from "react";
@@ -14,6 +13,7 @@ import {
 } from "@/components/ui/dialog";
 import { usePreviewFilesModel } from "./preview-files.model";
 import { Loader2 } from "lucide-react";
+import { useImageAndVideoStore } from "../../stores/image-n-video-store";
 
 export function ShowImageModal() {
   const { state, actions } = usePreviewFilesModel();

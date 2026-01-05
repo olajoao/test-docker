@@ -1,6 +1,5 @@
 import { getIdFromResponseHeadersLocation } from "@/helpers/get-response-header-id";
 import { queryClient } from "@/lib/react-query";
-import { useSheetStore } from "@/store/sheet";
 import { useMutation } from "@tanstack/react-query";
 import { format } from "date-fns";
 import { useNavigate } from "@tanstack/react-router";
@@ -8,6 +7,7 @@ import { channelKeys } from "../../channel.keys";
 import { EChannelTypes } from "../../channel.types";
 import { createChannelService } from "./channel-modal.service";
 import { useWhoAmIUserContext } from "@/modules/mytalk/stores/who-am-i-user";
+import { useSheetStore } from "@/modules/mytalk/stores/sheet";
 
 export const useChannelModalModel = () => {
   const { user } = useWhoAmIUserContext();

@@ -1,5 +1,5 @@
-import { ModalType as LegacyModalType, useModalStore } from '@/store/modal'
-import { ModalType as NewModalType, useNewModalStore } from '@/store/new-modal'
+import { ModalType as LegacyModalType, useModalStore } from '../modules/mytalk/stores/modal'
+import { ModalType as NewModalType, useNewModalStore } from '../modules/mytalk/stores/new-modal'
 
 // Compat: MyTalk usa ModalType de ambos os stores; mantemos a enum de `store/modal` como fonte principal.
 export type ModalType = LegacyModalType

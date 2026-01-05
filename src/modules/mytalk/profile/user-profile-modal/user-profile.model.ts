@@ -1,5 +1,4 @@
 import { useModal } from "@/hooks/use-modal";
-import { ModalType } from "@/store/modal";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -11,6 +10,7 @@ import { userCacheKey } from "../../users/users.cache-key";
 import { toast } from "sonner";
 import { userFormSchema, type UserFormSchema } from "./user-profile.schema";
 import type { WhoAmIUser } from "../../interfaces/who-am-i";
+import { ModalType } from "../../stores/modal";
 
 export const useUserProfileModel = ({ user }: { user: WhoAmIUser }) => {
   const { isOpen, toggleModal } = useModal(ModalType.HandleUserProfileEdit);

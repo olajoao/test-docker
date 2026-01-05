@@ -16,6 +16,7 @@ import { Route as AuthLoginRouteImport } from './pages/_auth/login'
 import { Route as AppLayoutRouteImport } from './pages/_app/_layout'
 import { Route as AppLayoutSipTrunksRouteImport } from './pages/_app/_layout.sip.trunks'
 import { Route as AppLayoutSipBranchsRouteImport } from './pages/_app/_layout.sip.branchs'
+import { Route as AppLayoutPabxCallbackRouteImport } from './pages/_app/_layout.pabx.callback'
 
 const WebrtcRoute = WebrtcRouteImport.update({
   id: '/webrtc',
@@ -51,12 +52,18 @@ const AppLayoutSipBranchsRoute = AppLayoutSipBranchsRouteImport.update({
   path: '/sip/branchs',
   getParentRoute: () => AppLayoutRoute,
 } as any)
+const AppLayoutPabxCallbackRoute = AppLayoutPabxCallbackRouteImport.update({
+  id: '/pabx/callback',
+  path: '/pabx/callback',
+  getParentRoute: () => AppLayoutRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/mytalk': typeof MytalkRouteWithChildren
   '/webrtc': typeof WebrtcRoute
   '/login': typeof AuthLoginRoute
   '/mytalk/$channelId': typeof MytalkChannelIdRoute
+  '/pabx/callback': typeof AppLayoutPabxCallbackRoute
   '/sip/branchs': typeof AppLayoutSipBranchsRoute
   '/sip/trunks': typeof AppLayoutSipTrunksRoute
 }
@@ -65,6 +72,7 @@ export interface FileRoutesByTo {
   '/webrtc': typeof WebrtcRoute
   '/login': typeof AuthLoginRoute
   '/mytalk/$channelId': typeof MytalkChannelIdRoute
+  '/pabx/callback': typeof AppLayoutPabxCallbackRoute
   '/sip/branchs': typeof AppLayoutSipBranchsRoute
   '/sip/trunks': typeof AppLayoutSipTrunksRoute
 }
@@ -75,6 +83,7 @@ export interface FileRoutesById {
   '/_app/_layout': typeof AppLayoutRouteWithChildren
   '/_auth/login': typeof AuthLoginRoute
   '/mytalk/$channelId': typeof MytalkChannelIdRoute
+  '/_app/_layout/pabx/callback': typeof AppLayoutPabxCallbackRoute
   '/_app/_layout/sip/branchs': typeof AppLayoutSipBranchsRoute
   '/_app/_layout/sip/trunks': typeof AppLayoutSipTrunksRoute
 }
@@ -85,6 +94,7 @@ export interface FileRouteTypes {
     | '/webrtc'
     | '/login'
     | '/mytalk/$channelId'
+    | '/pabx/callback'
     | '/sip/branchs'
     | '/sip/trunks'
   fileRoutesByTo: FileRoutesByTo
@@ -93,6 +103,7 @@ export interface FileRouteTypes {
     | '/webrtc'
     | '/login'
     | '/mytalk/$channelId'
+    | '/pabx/callback'
     | '/sip/branchs'
     | '/sip/trunks'
   id:
@@ -102,6 +113,7 @@ export interface FileRouteTypes {
     | '/_app/_layout'
     | '/_auth/login'
     | '/mytalk/$channelId'
+    | '/_app/_layout/pabx/callback'
     | '/_app/_layout/sip/branchs'
     | '/_app/_layout/sip/trunks'
   fileRoutesById: FileRoutesById
@@ -164,6 +176,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppLayoutSipBranchsRouteImport
       parentRoute: typeof AppLayoutRoute
     }
+    '/_app/_layout/pabx/callback': {
+      id: '/_app/_layout/pabx/callback'
+      path: '/pabx/callback'
+      fullPath: '/pabx/callback'
+      preLoaderRoute: typeof AppLayoutPabxCallbackRouteImport
+      parentRoute: typeof AppLayoutRoute
+    }
   }
 }
 
@@ -179,11 +198,13 @@ const MytalkRouteWithChildren =
   MytalkRoute._addFileChildren(MytalkRouteChildren)
 
 interface AppLayoutRouteChildren {
+  AppLayoutPabxCallbackRoute: typeof AppLayoutPabxCallbackRoute
   AppLayoutSipBranchsRoute: typeof AppLayoutSipBranchsRoute
   AppLayoutSipTrunksRoute: typeof AppLayoutSipTrunksRoute
 }
 
 const AppLayoutRouteChildren: AppLayoutRouteChildren = {
+  AppLayoutPabxCallbackRoute: AppLayoutPabxCallbackRoute,
   AppLayoutSipBranchsRoute: AppLayoutSipBranchsRoute,
   AppLayoutSipTrunksRoute: AppLayoutSipTrunksRoute,
 }

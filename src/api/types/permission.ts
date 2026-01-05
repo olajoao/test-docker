@@ -41,8 +41,5 @@ export interface PermissionState {
   /** Verifica se usuário tem TODAS as permissões listadas */
   hasAllPermissions: (permissions: string[]) => boolean;
   
-  /** Verifica se usuário tem QUALQUER UMA das permissões listadas */
-  hasAnyPermission: (permissions: string[]) => boolean;
-  
 }
 

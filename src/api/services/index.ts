@@ -4,6 +4,7 @@ import type { AuthProps, UserPermissions } from "@/modules/auth/model";
 import { http } from "../http";
 
 export const baseService = new BaseService<SipBranchProps>("/api/gate/api/server/1/pabx/1/sip_devices")
+export const baseServiceCallback = new BaseService<SipBranchProps>("/governance/medias")
 export const authService = new BaseService<AuthProps>("/oauth/token")
 
 // Permission service with custom method that returns string[]

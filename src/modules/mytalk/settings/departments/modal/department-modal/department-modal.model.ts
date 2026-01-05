@@ -17,7 +17,7 @@ import {
   createDepartmentService,
   editDepartmentService,
 } from "./department-modal.service";
-import { ModalType } from "@/store/new-modal";
+import { ModalType } from "@/modules/mytalk/stores/new-modal";
 
 export const useDepartmentModalModel = ({
   department,

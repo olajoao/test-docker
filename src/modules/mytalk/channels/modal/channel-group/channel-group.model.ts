@@ -2,8 +2,6 @@ import { getIdFromResponseHeadersLocation } from "@/helpers/get-response-header-
 import { useModal } from "@/hooks/use-modal";
 import { queryClient } from "@/lib/react-query";
 import { useContactUsers } from "@/modules/mytalk/users/users.hooks";
-import { ModalType } from "@/store/modal";
-import { useSheetStore } from "@/store/sheet";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { format } from "date-fns";
@@ -23,6 +21,8 @@ import {
 import { channelKeys } from "../../channel.keys";
 import type { ChannelProps } from "../../channel.types";
 import { useWhoAmIUserContext } from "@/modules/mytalk/stores/who-am-i-user";
+import { ModalType } from "@/modules/mytalk/stores/modal";
+import { useSheetStore } from "@/modules/mytalk/stores/sheet";
 
 export const useChannelGroupModel = (groupChannel?: ChannelProps) => {
   const navigate = useNavigate();

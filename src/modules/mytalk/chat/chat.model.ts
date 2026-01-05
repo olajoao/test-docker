@@ -1,18 +1,18 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { useModal } from "@/hooks/use-modal";
-import { ModalType } from "@/store/modal";
 import { ClassicEditor } from "ckeditor5";
 import { format } from "date-fns";
 import { useEffect, useRef, useState } from "react";
 import { channelMessageKeys } from "../channels/messages/channel.messages.keys";
 import { editorConfig } from "./chat.config";
 import { editMessageService, sendMessageService } from "./chat.service";
-import { useScrollMessageListStore } from "@/store/scroll-message-list";
 import { toast } from "sonner";
 import type { MessagePayloadProps } from "./chat.types";
 import { useMyTalkChannelId } from "../hooks/use-current-channel-id";
 import { useWhoAmIUserContext } from "../stores/who-am-i-user";
+import { ModalType } from "../stores/modal";
+import { useScrollMessageListStore } from "../stores/scroll-message-list";
 
 const ENTER_KEY_CODE = 13;
 

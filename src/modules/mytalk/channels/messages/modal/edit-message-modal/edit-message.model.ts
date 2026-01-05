@@ -5,9 +5,9 @@ import { useForm } from "react-hook-form";
 import { channelMessageKeys } from "../../channel.messages.keys";
 import { editMessageService } from "./edit-message.service";
 import { useModal } from "@/hooks/use-modal";
-import { ModalType } from "@/store/modal";
 import { editMessageSchema, type EditMessageSchema } from "./edit-message.schema";
 import type { EditMessageProps } from "./edit-message.types";
+import { ModalType } from "@/modules/mytalk/stores/modal";
 
 export const useEditMessageModel = ({
   messageId,

@@ -1,11 +1,11 @@
 import { queryClient } from "@/lib/react-query";
 import { channelMessageKeys } from "@/modules/mytalk/channels/messages/channel.messages.keys";
 import { sendAudioMessageService } from "@/modules/mytalk/chat/chat.service";
-import { useAudioStore } from "@/store/audio-store";
 import { useMutation } from "@tanstack/react-query";
 import { format } from "date-fns";
 import { useMyTalkChannelId } from "../../hooks/use-current-channel-id";
 import { useWhoAmIUserContext } from "../../stores/who-am-i-user";
+import { useAudioStore } from "../../stores/audio-store";
 
 export const useAudioModel = () => {
   const channelId = useMyTalkChannelId();

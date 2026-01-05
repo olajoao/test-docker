@@ -1,6 +1,6 @@
 import { useState, useRef, useCallback, useEffect } from "react"
-import { useAudioStore } from "@/store/audio-store"
 import { useSmoothTimer } from "./smooth-timer-hook"
+import { useAudioStore } from "../../stores/audio-store"
 
 interface UseAudioRecorderProps {
   maxDuration?: number

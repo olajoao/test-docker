@@ -1,6 +1,7 @@
+import { useMicrophonePermission as useMicrophoneStore, checkMicrophonePermissions } from "@/modules/mytalk/stores/microphone-permission"
+
 import { useState, useCallback } from "react";
 import { toast } from "sonner";
-import { useMicrophonePermission as useMicrophoneStore, checkMicrophonePermissions } from "@/store/microphone-permission";
 
 export function useMicrophonePermission() {
   const [isChecking, setIsChecking] = useState(false);

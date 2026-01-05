@@ -1,5 +1,5 @@
 import { Input } from "@/components/ui/input";
-import { useImageAndVideoStore } from "@/store/image-n-video-store";
+import { useImageAndVideoStore } from "@/modules/mytalk/stores/image-n-video-store";
 import { ImageIcon } from "@radix-ui/react-icons";
 import { toast } from "sonner";
 

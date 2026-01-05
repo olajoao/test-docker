@@ -116,7 +116,7 @@ const navMain = (t: (key: string) => string): NavItem[] => [
       },
       {
         title: t('nav.pabx_callback'),
-        url: "#",
+        url: "/pabx/callback",
         permission: "callback"
       },
       {
