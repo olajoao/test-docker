@@ -12,30 +12,19 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import type { SipBranchProps } from "@/modules/sip/branchs"
 import { Button } from "./button"
-import { Route } from "@/pages/_app/_layout.sip.branchs"
+
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
-  table: ReturnType<typeof useReactTable<SipBranchProps>>
+  table: ReturnType<typeof useReactTable<TData>>
+  onChangePage: (page: number) => void
 }
 
 export function DataTable<TData, TValue>({
   columns,
-  table
+  table,
+  onChangePage
 }: DataTableProps<TData, TValue>) {
-
-  const navigate = Route.useNavigate()
-  const search = Route.useSearch()
-
-  const handleChangePage = (nextPage: number) => {
-    navigate({
-      search: {
-        ...search,
-        page: nextPage,
-      },
-    })
-  }
 
   const pageIndex = table.getState().pagination.pageIndex + 1
   const pageCount = table.getPageCount()
@@ -93,7 +82,7 @@ export function DataTable<TData, TValue>({
             variant="outline"
             size="sm"
             className="text-xs 2xl:text-sm"
-            onClick={() => handleChangePage(pageIndex - 1)}
+            onClick={() => onChangePage(pageIndex - 1)}
             disabled={pageIndex <= 1}
           >
             Anterior
@@ -107,7 +96,7 @@ export function DataTable<TData, TValue>({
             variant="outline"
             size="sm"
             className="text-xs 2xl:text-sm"
-            onClick={() => handleChangePage(pageIndex + 1)}
+            onClick={() => onChangePage(pageIndex + 1)}
             disabled={pageCount > 0 && pageIndex >= pageCount}
           >
             Próxima
