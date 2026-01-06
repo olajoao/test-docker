@@ -1,5 +1,8 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @custom-variant dark (&:is(.dark *));
 
@@ -130,6 +133,62 @@ html {
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.552 0.016 285.938);
 }
+
+@layer components {
+  .page__title {
+    @apply scroll-m-20 text-sm font-medium 2xl:text-xl tracking-tight dark:text-gray-400;
+  }
+
+  .download__btn {
+    @apply inline-flex items-center justify-center whitespace-nowrap dark:hover:bg-white rounded-sm text-xs px-2 font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 text-primary-foreground shadow hover:bg-primary/90 h-7 py-2 bg-[#334155] dark:bg-neutral-700/30;
+  }
+
+  .main-container .ck-editor__editable_inline {
+    background: transparent !important;
+  }
+
+  .main-container .ck-editor__editable {
+    background: white !important;
+    border: none !important;
+    border-radius: 0.5rem !important;
+  }
+
+  .dark .main-container .ck-editor__editable {
+    background: color-mix(in oklab, var(--input) 30%, transparent) !important;
+    border: 1px solid rgb(255 255 255 / 15%) !important;
+  }
+
+  .dark .main-container .ck-toolbar_grouping .ck-button {
+    color: rgba(255, 255, 255, 0.5) !important;
+  }
+
+  .main-container .ck-sticky-panel__content {
+    border: transparent !important;
+  }
+
+}
+
+@layer utilities {
+  .btn__dark--hover {
+    @apply dark:hover:text-gray-700 dark:hover:bg-white dark:text-white;
+  }
+
+  .scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    @apply bg-gray-100 dark:bg-neutral-600/70;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    border-radius: 100vh;
+    @apply border border-solid border-neutral-100 bg-neutral-300 dark:border-neutral-500/50 dark:bg-neutral-800/70;
+  }
+}
+
 
 @layer base {
   * {

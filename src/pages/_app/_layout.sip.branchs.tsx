@@ -18,6 +18,18 @@ export const Route = createFileRoute('/_app/_layout/sip/branchs')({
 function SipBranchs() {
   const { list: branchs, isLoading, table } = useBranchs()
 
+  const navigate = Route.useNavigate()
+  const search = Route.useSearch()
+
+  const handleChangePage = (nextPage: number) => {
+    navigate({
+      search: {
+        ...search,
+        page: nextPage,
+      },
+    })
+  }
+
   return (
     <div className="flex-1 space-y-5 min-w-0 overflow-hidden">
       <Cards cardData={branchs} />
@@ -47,7 +59,7 @@ function SipBranchs() {
 
       {isLoading ?
         <TableSkeleton rows={5} columns={10} />
-        : <DataTable columns={columns} table={table} />
+        : <DataTable columns={columns} table={table} onChangePage={handleChangePage} />
       }
     </div>
   )

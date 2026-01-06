@@ -5,14 +5,9 @@ import { createRouter, RouterProvider } from '@tanstack/react-router'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { routeTree } from './routeTree.gen'
 import { Toaster } from 'sonner'
+import './lib/i18n'
 
-export const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      retry: 1,
-    }
-  }
-})
+import { queryClient } from '@/lib/react-query'
 const router = createRouter({
   routeTree,
 })
