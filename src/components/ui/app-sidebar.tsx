@@ -1,4 +1,4 @@
-import { Command, LifeBuoy, Workflow, Settings2, ChevronRight, Cog, SquareAsterisk, Phone, Headset, ChartLine, PhoneOutgoing, LogOut, Globe, Moon, Sun } from "lucide-react"
+import { Command, LifeBuoy, Workflow, Settings2, ChevronRight, Cog, SquareAsterisk, Phone, Headset, ChartLine, PhoneOutgoing, LogOut, Globe, Moon, Sun, KeyRound } from "lucide-react"
 
 import {
   Sidebar,
@@ -32,6 +32,10 @@ import { useAuth } from "@/modules/auth/hooks"
 import type { LucideIcon } from "lucide-react"
 import { useTranslation, useLanguage } from "@/hooks/use-translation"
 import { useTheme } from "@/hooks/use-theme"
+import axios from "axios"
+import type { Tokens } from "@/api/types/auth"
+import { useAuthStore } from "@/stores/auth-store"
+import { http } from "@/api/http"
 
 interface NavSubItem {
   title: string
@@ -158,7 +162,7 @@ const navMain = (t: (key: string) => string): NavItem[] => [
       },
       {
         title: t('nav.gerenciamento_audios'),
-        url: "#",
+        url: "/management/audio_music",
         permission: "audios"
       },
        {
@@ -370,6 +374,35 @@ export function AppSidebar() {
   }
 
 
+  const authenticatedUser = async () => {
+    const apiBaseUrl = import.meta.env.VITE_API_NYA_BASE_URL ?? import.meta.env.VITE_API_DEV_URL
+
+    const data = new URLSearchParams({
+      grant_type: 'password',
+      username: 'dev@saperx.com.br',
+      password: 'biYY$jnUjUz'
+    })
+
+    try {
+      const res = await axios.post<Tokens>(
+        `${apiBaseUrl}/oauth/token`,
+        data,
+        {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            Authorization: 'Basic MTQ6NmJta3ZqNnpLbEtGU2V5Y0UwRmxMb0Z1dEZDOWZuV044eDVTak01Rw=='
+          }
+        }
+      )
+
+      useAuthStore.getState().setAuth(res.data)
+      http.defaults.headers.common.Authorization = `Bearer ${res.data.access_token}`
+      console.log('Authenticated. Token applied to http client.')
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
   const shouldShowModule = (items?: NavSubItem[]) => {
     if (!items) return false
     
@@ -393,6 +426,13 @@ export function AppSidebar() {
                   <span className="truncate font-semibold">Acme Inc</span>
                   <span className="truncate text-xs">Enterprise</span>
                 </div>
+                  <KeyRound
+                    onClick={(e) => {
+                      e.preventDefault()
+                      e.stopPropagation()
+                      void authenticatedUser()
+                    }}
+                  />
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>

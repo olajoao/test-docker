@@ -17,6 +17,7 @@ import { Route as AppLayoutRouteImport } from './pages/_app/_layout'
 import { Route as AppLayoutSipTrunksRouteImport } from './pages/_app/_layout.sip.trunks'
 import { Route as AppLayoutSipBranchsRouteImport } from './pages/_app/_layout.sip.branchs'
 import { Route as AppLayoutPabxCallbackRouteImport } from './pages/_app/_layout.pabx.callback'
+import { Route as AppLayoutManagementAudio_musicRouteImport } from './pages/_app/_layout.management.audio_music'
 
 const WebrtcRoute = WebrtcRouteImport.update({
   id: '/webrtc',
@@ -57,12 +58,19 @@ const AppLayoutPabxCallbackRoute = AppLayoutPabxCallbackRouteImport.update({
   path: '/pabx/callback',
   getParentRoute: () => AppLayoutRoute,
 } as any)
+const AppLayoutManagementAudio_musicRoute =
+  AppLayoutManagementAudio_musicRouteImport.update({
+    id: '/management/audio_music',
+    path: '/management/audio_music',
+    getParentRoute: () => AppLayoutRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/mytalk': typeof MytalkRouteWithChildren
   '/webrtc': typeof WebrtcRoute
   '/login': typeof AuthLoginRoute
   '/mytalk/$channelId': typeof MytalkChannelIdRoute
+  '/management/audio_music': typeof AppLayoutManagementAudio_musicRoute
   '/pabx/callback': typeof AppLayoutPabxCallbackRoute
   '/sip/branchs': typeof AppLayoutSipBranchsRoute
   '/sip/trunks': typeof AppLayoutSipTrunksRoute
@@ -72,6 +80,7 @@ export interface FileRoutesByTo {
   '/webrtc': typeof WebrtcRoute
   '/login': typeof AuthLoginRoute
   '/mytalk/$channelId': typeof MytalkChannelIdRoute
+  '/management/audio_music': typeof AppLayoutManagementAudio_musicRoute
   '/pabx/callback': typeof AppLayoutPabxCallbackRoute
   '/sip/branchs': typeof AppLayoutSipBranchsRoute
   '/sip/trunks': typeof AppLayoutSipTrunksRoute
@@ -83,6 +92,7 @@ export interface FileRoutesById {
   '/_app/_layout': typeof AppLayoutRouteWithChildren
   '/_auth/login': typeof AuthLoginRoute
   '/mytalk/$channelId': typeof MytalkChannelIdRoute
+  '/_app/_layout/management/audio_music': typeof AppLayoutManagementAudio_musicRoute
   '/_app/_layout/pabx/callback': typeof AppLayoutPabxCallbackRoute
   '/_app/_layout/sip/branchs': typeof AppLayoutSipBranchsRoute
   '/_app/_layout/sip/trunks': typeof AppLayoutSipTrunksRoute
@@ -94,6 +104,7 @@ export interface FileRouteTypes {
     | '/webrtc'
     | '/login'
     | '/mytalk/$channelId'
+    | '/management/audio_music'
     | '/pabx/callback'
     | '/sip/branchs'
     | '/sip/trunks'
@@ -103,6 +114,7 @@ export interface FileRouteTypes {
     | '/webrtc'
     | '/login'
     | '/mytalk/$channelId'
+    | '/management/audio_music'
     | '/pabx/callback'
     | '/sip/branchs'
     | '/sip/trunks'
@@ -113,6 +125,7 @@ export interface FileRouteTypes {
     | '/_app/_layout'
     | '/_auth/login'
     | '/mytalk/$channelId'
+    | '/_app/_layout/management/audio_music'
     | '/_app/_layout/pabx/callback'
     | '/_app/_layout/sip/branchs'
     | '/_app/_layout/sip/trunks'
@@ -183,6 +196,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppLayoutPabxCallbackRouteImport
       parentRoute: typeof AppLayoutRoute
     }
+    '/_app/_layout/management/audio_music': {
+      id: '/_app/_layout/management/audio_music'
+      path: '/management/audio_music'
+      fullPath: '/management/audio_music'
+      preLoaderRoute: typeof AppLayoutManagementAudio_musicRouteImport
+      parentRoute: typeof AppLayoutRoute
+    }
   }
 }
 
@@ -198,12 +218,14 @@ const MytalkRouteWithChildren =
   MytalkRoute._addFileChildren(MytalkRouteChildren)
 
 interface AppLayoutRouteChildren {
+  AppLayoutManagementAudio_musicRoute: typeof AppLayoutManagementAudio_musicRoute
   AppLayoutPabxCallbackRoute: typeof AppLayoutPabxCallbackRoute
   AppLayoutSipBranchsRoute: typeof AppLayoutSipBranchsRoute
   AppLayoutSipTrunksRoute: typeof AppLayoutSipTrunksRoute
 }
 
 const AppLayoutRouteChildren: AppLayoutRouteChildren = {
+  AppLayoutManagementAudio_musicRoute: AppLayoutManagementAudio_musicRoute,
   AppLayoutPabxCallbackRoute: AppLayoutPabxCallbackRoute,
   AppLayoutSipBranchsRoute: AppLayoutSipBranchsRoute,
   AppLayoutSipTrunksRoute: AppLayoutSipTrunksRoute,

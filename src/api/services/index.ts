@@ -1,10 +1,13 @@
 import type { SipBranchProps } from "@/modules/sip/branchs/model";
+import type { CallbackProps } from "@/modules/pabx/callback/model";
+import type { MediaProps } from "@/modules/management/audio-music/model";
 import { BaseService } from "../base-service";
 import type { AuthProps, UserPermissions } from "@/modules/auth/model";
 import { http } from "../http";
 
 export const baseService = new BaseService<SipBranchProps>("/api/gate/api/server/1/pabx/1/sip_devices")
-export const baseServiceCallback = new BaseService<SipBranchProps>("/governance/medias")
+export const baseServiceCallback = new BaseService<CallbackProps>("/api/governance/medias")
+export const baseServiceManagementAudio = new BaseService<MediaProps>("/api/governance/medias")
 export const authService = new BaseService<AuthProps>("/oauth/token")
 
 // Permission service with custom method that returns string[]

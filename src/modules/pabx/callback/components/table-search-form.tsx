@@ -31,7 +31,7 @@ export function TableSearchForm() {
         name="filter"
         children={(field) => (
           <Input
-            className='py-2 h-8 w-[50%] outline-none ring-none focus-visible:ring-0'
+            className='py-2 h-8 max-w-md outline-none ring-none focus-visible:ring-0'
             name={field.name}
             value={field.state.value}
             type='text'
