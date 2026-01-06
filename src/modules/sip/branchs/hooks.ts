@@ -13,6 +13,7 @@ export const useBranchs = () => {
     queryKey: [ENDPOINTS.SIP_BRANCHS, filter, page, perPage],
     queryFn: () => baseService.list<SipBranchProps>({ filter, page, per_page: perPage }),
   })
+
   const table = useReactTable({
     data: listQuery.data?.data ?? [],
     columns,
